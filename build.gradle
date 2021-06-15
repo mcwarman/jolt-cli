@@ -36,5 +36,5 @@ distributions {
 
 
 installDist {
-  destinationDir = new File('./build/install')
+  destinationDir = new File('./build/distribution')
 }
