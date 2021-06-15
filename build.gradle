@@ -1,0 +1,40 @@
+apply plugin: "distribution"
+
+ext {
+  joltVersion='0.1.1'
+}
+
+distTar.enabled=false
+distZip.enabled=false
+
+repositories {
+  mavenCentral()
+}
+
+configurations {
+  jolt{}
+}
+
+dependencies {
+  jolt ("com.bazaarvoice.jolt:jolt-complete:0.1.1")
+  jolt ("com.bazaarvoice.jolt:jolt-cli:0.1.1")
+}
+
+distributions {
+  main {
+    contents {
+      into('') {
+        from('src')
+      }
+      into('lib') {
+        from(project.configurations.jolt)
+      }
+      rename '(.*)-[0-9]+\\..*.jar', '$1.jar'
+    }
+  }
+}
+
+
+installDist {
+  destinationDir = new File('./build/install')
+}
