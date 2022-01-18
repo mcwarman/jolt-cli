@@ -4,7 +4,7 @@ ext {
   joltVersion='0.1.1'
 }
 
-distTar.enabled=false
+distTar.enabled=true
 distZip.enabled=false
 
 repositories {
@@ -34,6 +34,12 @@ distributions {
   }
 }
 
+plugins.withType(DistributionPlugin) {
+  distTar {
+    compression = Compression.GZIP
+    extension = 'tar.gz'
+  }
+}
 
 installDist {
   destinationDir = new File('./build/distribution')
