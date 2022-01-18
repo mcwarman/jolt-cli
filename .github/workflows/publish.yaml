@@ -26,4 +26,4 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          files: ./build/distribution/jolt-cli.tar.gz
+          files: ./build/distributions/jolt-cli.tar.gz
