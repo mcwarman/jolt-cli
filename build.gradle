@@ -17,7 +17,7 @@ configurations {
 
 dependencies {
   jolt ("com.bazaarvoice.jolt:jolt-complete:0.1.1")
-  jolt ("com.bazaarvoice.jolt:jolt-cli:0.1.1")
+  jolt ("com.bazaarvoice.jolt:jolt-cli:0.1.5")
 }
 
 distributions {
