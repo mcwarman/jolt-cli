@@ -29,7 +29,6 @@ distributions {
       into('lib') {
         from(project.configurations.jolt)
       }
-      rename '(.*)-[0-9]+\\..*.jar', '$1.jar'
     }
   }
 }
