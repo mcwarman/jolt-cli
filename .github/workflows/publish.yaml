@@ -29,6 +29,9 @@ jobs:
       - name: Set up Homebrew
         uses: Homebrew/actions/setup-homebrew@master
 
+      - name: Tap mcwarman/tap
+        run: brew tap mcwarman/tap
+
       - name: Bump formulae
         uses: Homebrew/actions/bump-formulae@master
         with:
