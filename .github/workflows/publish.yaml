@@ -25,3 +25,13 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: ./build/distributions/jolt-cli.tar.gz
+
+      - name: Set up Homebrew
+        uses: Homebrew/actions/setup-homebrew@master
+
+      - name: Bump formulae
+        uses: Homebrew/actions/bump-formulae@master
+        with:
+          token: ${{secrets.HOMEBREW_TOKEN}}
+          formulae: |
+            jolt
