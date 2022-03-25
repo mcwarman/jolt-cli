@@ -1,7 +1,7 @@
 apply plugin: "distribution"
 
 ext {
-  joltVersion='0.1.5'
+  joltVersion='0.1.6'
 }
 
 distTar.enabled=true
