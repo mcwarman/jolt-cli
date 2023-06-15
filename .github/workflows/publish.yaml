@@ -42,8 +42,8 @@ jobs:
       - name: Create version
         id: version
         env:
-          version: ${{ github.ref }}
-        run: echo "version=${version#v}" > "${GITHUB_OUTPUT}"
+          ref_name: ${{ github.ref_name }}
+        run: echo "version=${ref_name#v}" > "${GITHUB_OUTPUT}"
 
       - name: Bump formulae
         run: brew bump-formula-pr mcwarman/tap/jolt --no-fork --version ${{ steps.version.outputs.version }} --revision ${{ github.sha }}
