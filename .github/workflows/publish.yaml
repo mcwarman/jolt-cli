@@ -70,8 +70,6 @@ jobs:
           brew bump-formula-pr mcwarman/tap/jolt \
           --no-fork \
           --no-browse \
-          --version ${{ steps.version.outputs.versionWithoutPrefix }} \
-          --revision ${{ github.sha }} \
           --url ${{ github.server_url }}/${{ github.repository }}/releases/download/${{ steps.version.outputs.version }}/jolt-cli.tar.gz \
           --sha256=${{ steps.checksums.outputs.sha }}
         env:
