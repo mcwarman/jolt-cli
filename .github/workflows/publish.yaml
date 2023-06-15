@@ -45,6 +45,11 @@ jobs:
           ref_name: ${{ github.ref_name }}
         run: echo "version=${ref_name#v}" > "${GITHUB_OUTPUT}"
 
+      - name: Setup git config
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
       - name: Bump formulae
         run: brew bump-formula-pr mcwarman/tap/jolt --no-fork --version ${{ steps.version.outputs.version }} --revision ${{ github.sha }}
         env:
