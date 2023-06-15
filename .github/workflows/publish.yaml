@@ -21,10 +21,17 @@ jobs:
       - name: Create gradle assembly
         run: gradle clean assemble
 
+      - name: Create checksums.txt
+        run: |
+          cd ./build/distributions/
+          sha256sum jolt-cli.tar.gz > checksums.txt
+
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          files: ./build/distributions/jolt-cli.tar.gz
+          files: |
+            ./build/distributions/jolt-cli.tar.gz
+            ./build/distributions/checksums.txt
 
       - name: Set up Homebrew
         uses: Homebrew/actions/setup-homebrew@master
@@ -32,9 +39,15 @@ jobs:
       - name: Tap mcwarman/tap
         run: brew tap mcwarman/tap
 
+      - name: Create version
+        id: version
+        env:
+          version: ${{ github.ref }}
+        run: echo "version=${version#v}" > "${GITHUB_OUTPUT}"
+
       - name: Bump formulae
-        run: brew bump mcwarman/tap/jolt --full-name --open-pr
+        run: brew bump-formula-pr mcwarman/tap/jolt --no-fork --version ${{ steps.version.outputs.version }} --revision ${{ github.sha }}
         env:
           HOMEBREW_DEVELOPER: "1"
-          HOMEBREW_GITHUB_API_TOKEN: ${{secrets.HOMEBREW_TOKEN}}
+          HOMEBREW_GITHUB_API_TOKEN: ${{ secrets.HOMEBREW_TOKEN }}
           HOMEBREW_NO_INSTALL_FROM_API: "1"
