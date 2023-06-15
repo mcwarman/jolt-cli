@@ -34,12 +34,11 @@ distributions {
   }
 }
 
-plugins.withType(DistributionPlugin) {
-  distTar {
-    compression = Compression.GZIP
-    extension = 'tar.gz'
-  }
+distTar {
+  compression = Compression.GZIP
+  archiveExtension = "tar.gz"
 }
+
 
 installDist {
   destinationDir = new File('./build/distribution')
