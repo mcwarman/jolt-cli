@@ -47,6 +47,8 @@ jobs:
 
       - name: Setup git config
         run: |
+          tap_path=$(brew tap-info mcwarman/tap --json | jq -r '.[0].path')
+          cd "${tap_path}"
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
