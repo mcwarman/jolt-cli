@@ -29,7 +29,7 @@ jobs:
           echo "sha=$(grep jolt-cli.tar.gz checksums.txt | cut -d' ' -f1)" > "${GITHUB_OUTPUT}"
 
       - name: Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           files: |
             ./build/distributions/jolt-cli.tar.gz
