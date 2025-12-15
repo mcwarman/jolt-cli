@@ -19,7 +19,7 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: adopt
-          java-version: 11
+          java-version: 21
 
       - name: Test build with Gradle
         run: gradle clean assemble
